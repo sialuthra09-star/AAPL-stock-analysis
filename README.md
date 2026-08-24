@@ -19,3 +19,40 @@ AAPL-Quantitative-Finance/
 │
 ├── data/                      # Downloaded and processed data
 └── results/                   # Output visualizations
+Installation
+bash
+pip install -r requirements.txt
+Usage
+Run scripts in order:
+
+bash
+python 01_data_collection.py
+python 02_log_return_analysis.py
+python 03_gbm_sde.py
+python 04_garch_volatility.py
+python 05_monte_carlo_risk.py
+python 06_black_scholes.py
+python 07_monte_carlo_option.py
+python 08_greeks.py
+Key Features
+Data Collection: Fetch historical AAPL data from Yahoo Finance
+
+Return Analysis: Log return calculations and distribution analysis
+
+GBM Simulation: Stock price path simulation using SDE
+
+Volatility Modeling: GARCH(1,1) for time-varying volatility
+
+Risk Analysis: Monte Carlo VaR and expected shortfall
+
+Option Pricing: Black-Scholes and Monte Carlo methods
+
+Greeks: Delta, Gamma, Vega, Theta, Rho calculations
+
+Requirements
+Python 3.8+
+
+See requirements.txt for dependencies
+
+Author
+Quantitative Finance Project
