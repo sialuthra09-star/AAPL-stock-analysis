@@ -55,4 +55,4 @@ Python 3.8+
 See requirements.txt for dependencies
 
 Author
-Quantitative Finance Project
+Sia Luthra
