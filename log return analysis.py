@@ -53,7 +53,7 @@ def plot_return_analysis(df, save_path='results/return_distribution.png'):
 
     returns = df['Log_Return'].dropna()
 
-    # Time series
+   
     axes[0, 0].plot(df['Date'], returns, linewidth=0.8, alpha=0.7)
     axes[0, 0].axhline(y=0, color='black', linestyle='--', linewidth=0.8)
     axes[0, 0].set_xlabel('Date')
@@ -61,7 +61,7 @@ def plot_return_analysis(df, save_path='results/return_distribution.png'):
     axes[0, 0].set_title('AAPL Log Returns Over Time')
     axes[0, 0].grid(True, alpha=0.3)
 
-    # Histogram
+   
     axes[0, 1].hist(returns, bins=50, density=True, alpha=0.7, color='steelblue')
     x = np.linspace(returns.min(), returns.max(), 100)
     axes[0, 1].plot(x, stats.norm.pdf(x, returns.mean(), returns.std()), 'r-', linewidth=2)
@@ -70,12 +70,12 @@ def plot_return_analysis(df, save_path='results/return_distribution.png'):
     axes[0, 1].set_title('Return Distribution')
     axes[0, 1].grid(True, alpha=0.3)
 
-    # Q-Q plot
+    
     stats.probplot(returns, dist="norm", plot=axes[1, 0])
     axes[1, 0].set_title('Q-Q Plot')
     axes[1, 0].grid(True, alpha=0.3)
 
-    # Rolling volatility
+    
     rolling_std = returns.rolling(window=30).std()
     axes[1, 1].plot(df['Date'][30:], rolling_std[30:], linewidth=1.5, color='darkorange')
     axes[1, 1].set_xlabel('Date')
