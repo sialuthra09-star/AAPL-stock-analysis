@@ -53,7 +53,7 @@ def plot_mc(results, S_T, discounted, conv_df, save_path='results/monte_carlo_pa
     """Plot Monte Carlo results"""
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
 
-    # Terminal distribution
+    
     axes[0, 0].hist(S_T, bins=60, density=True, alpha=0.7, color='steelblue')
     axes[0, 0].axvline(x=S_T.mean(), color='red', linestyle='--', linewidth=2, label=f'Mean: ${S_T.mean():.2f}')
     axes[0, 0].set_xlabel('Terminal Price ($)')
@@ -62,7 +62,7 @@ def plot_mc(results, S_T, discounted, conv_df, save_path='results/monte_carlo_pa
     axes[0, 0].legend()
     axes[0, 0].grid(True, alpha=0.3)
 
-    # Payoff distribution
+    
     nonzero = discounted[discounted > 0]
     axes[0, 1].hist(nonzero, bins=60, density=True, alpha=0.7, color='darkorange')
     axes[0, 1].axvline(x=discounted.mean(), color='red', linestyle='--', linewidth=2)
@@ -71,7 +71,7 @@ def plot_mc(results, S_T, discounted, conv_df, save_path='results/monte_carlo_pa
     axes[0, 1].set_title('Discounted Payoff Distribution')
     axes[0, 1].grid(True, alpha=0.3)
 
-    # Convergence
+    
     axes[1, 0].plot(conv_df['n_simulations'], conv_df['price'], linewidth=1.5, label='Price')
     axes[1, 0].fill_between(conv_df['n_simulations'],
                             conv_df['price'] - 1.96*conv_df['std_error'],
@@ -83,7 +83,7 @@ def plot_mc(results, S_T, discounted, conv_df, save_path='results/monte_carlo_pa
     axes[1, 0].legend(fontsize=8)
     axes[1, 0].grid(True, alpha=0.3)
 
-    # Std error
+    
     axes[1, 1].plot(conv_df['n_simulations'], conv_df['std_error'], linewidth=1.5, color='darkgreen')
     axes[1, 1].set_xlabel('Simulations')
     axes[1, 1].set_ylabel('Standard Error ($)')
