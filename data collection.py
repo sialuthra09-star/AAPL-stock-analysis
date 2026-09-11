@@ -20,7 +20,7 @@ def download_aapl_data(start_date=None, end_date=None):
     pd.DataFrame
         Historical stock data
     """
-    # Default to last 2 years
+    
     if end_date is None:
         end_date = datetime.now().strftime('%Y-%m-%d')
     if start_date is None:
@@ -28,14 +28,14 @@ def download_aapl_data(start_date=None, end_date=None):
 
     print(f"Downloading AAPL data from {start_date} to {end_date}...")
 
-    # Download data
+    
     aapl = yf.download('AAPL', start=start_date, end=end_date, progress=False)
 
-    # Clean column names (handle multi-index if present)
+   
     if isinstance(aapl.columns, pd.MultiIndex):
         aapl.columns = aapl.columns.get_level_values(0)
 
-    # Reset index to make Date a column
+    
     aapl = aapl.reset_index()
 
     # Save to CSV
@@ -64,13 +64,13 @@ def preprocess_data(df):
     pd.DataFrame
         Cleaned data
     """
-    # Sort by date
+    
     df = df.sort_values('Date').reset_index(drop=True)
 
-    # Drop rows with missing values
+   
     df = df.dropna()
 
-    # Convert Date to datetime
+    
     df['Date'] = pd.to_datetime(df['Date'])
 
     print(f"\nPreprocessing complete:")
@@ -80,13 +80,13 @@ def preprocess_data(df):
     return df
 
 if __name__ == "__main__":
-    # Download last 2 years of data
+   
     aapl_data = download_aapl_data()
 
-    # Preprocess
+   
     aapl_clean = preprocess_data(aapl_data)
 
-    # Display sample
+   
     print("\nFirst 5 rows:")
     print(aapl_clean.head())
 
