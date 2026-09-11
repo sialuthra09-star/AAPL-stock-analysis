@@ -67,7 +67,7 @@ def plot_greeks(strikes_df, time_df, S, K, T, save_path='results/option_sensitiv
     """Plot Greeks analysis"""
     fig, axes = plt.subplots(3, 2, figsize=(14, 12))
 
-    # Delta vs Strike
+   
     axes[0, 0].plot(strikes_df['Strike'], strikes_df['Call_Delta'], 'b-', linewidth=2.5, label='Call')
     axes[0, 0].plot(strikes_df['Strike'], strikes_df['Put_Delta'], 'r-', linewidth=2.5, label='Put')
     axes[0, 0].axvline(x=S, color='black', linestyle='--', linewidth=1.5)
@@ -79,7 +79,7 @@ def plot_greeks(strikes_df, time_df, S, K, T, save_path='results/option_sensitiv
     axes[0, 0].legend()
     axes[0, 0].grid(True, alpha=0.3)
 
-    # Gamma vs Strike
+   
     axes[0, 1].plot(strikes_df['Strike'], strikes_df['Call_Gamma'], 'b-', linewidth=2.5, label='Call')
     axes[0, 1].plot(strikes_df['Strike'], strikes_df['Put_Gamma'], 'r-', linewidth=2.5, label='Put')
     axes[0, 1].axvline(x=S, color='black', linestyle='--', linewidth=1.5)
@@ -89,7 +89,7 @@ def plot_greeks(strikes_df, time_df, S, K, T, save_path='results/option_sensitiv
     axes[0, 1].legend()
     axes[0, 1].grid(True, alpha=0.3)
 
-    # Vega vs Strike
+   
     axes[1, 0].plot(strikes_df['Strike'], strikes_df['Call_Vega'], 'b-', linewidth=2.5, label='Call')
     axes[1, 0].plot(strikes_df['Strike'], strikes_df['Put_Vega'], 'r-', linewidth=2.5, label='Put')
     axes[1, 0].axvline(x=S, color='black', linestyle='--', linewidth=1.5)
@@ -99,7 +99,7 @@ def plot_greeks(strikes_df, time_df, S, K, T, save_path='results/option_sensitiv
     axes[1, 0].legend()
     axes[1, 0].grid(True, alpha=0.3)
 
-    # Theta vs Strike
+    
     axes[1, 1].plot(strikes_df['Strike'], strikes_df['Call_Theta'], 'b-', linewidth=2.5, label='Call')
     axes[1, 1].plot(strikes_df['Strike'], strikes_df['Put_Theta'], 'r-', linewidth=2.5, label='Put')
     axes[1, 1].axvline(x=S, color='black', linestyle='--', linewidth=1.5)
@@ -109,7 +109,7 @@ def plot_greeks(strikes_df, time_df, S, K, T, save_path='results/option_sensitiv
     axes[1, 1].legend()
     axes[1, 1].grid(True, alpha=0.3)
 
-    # Delta vs Time
+   
     axes[2, 0].plot(time_df['T'], time_df['Call_Delta'], 'b-', linewidth=2.5, label='Call')
     axes[2, 0].plot(time_df['T'], time_df['Put_Delta'], 'r-', linewidth=2.5, label='Put')
     axes[2, 0].axvline(x=T, color='green', linestyle='--', linewidth=2)
@@ -119,7 +119,7 @@ def plot_greeks(strikes_df, time_df, S, K, T, save_path='results/option_sensitiv
     axes[2, 0].legend()
     axes[2, 0].grid(True, alpha=0.3)
 
-    # Vega vs Time
+    
     axes[2, 1].plot(time_df['T'], time_df['Call_Vega'], 'b-', linewidth=2.5, label='Call')
     axes[2, 1].plot(time_df['T'], time_df['Put_Vega'], 'r-', linewidth=2.5, label='Put')
     axes[2, 1].axvline(x=T, color='green', linestyle='--', linewidth=2)
