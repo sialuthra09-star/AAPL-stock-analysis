@@ -34,7 +34,7 @@ def plot_risk(losses, terminal_values, portfolio_value, risk_metrics,
     """Plot Monte Carlo risk analysis"""
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
 
-    # Loss distribution
+    
     axes[0, 0].hist(losses, bins=60, density=True, alpha=0.7, color='steelblue')
     axes[0, 0].axvline(x=risk_metrics['var_95'], color='red', linestyle='--', linewidth=2, label='95% VaR')
     axes[0, 0].axvline(x=risk_metrics['var_99'], color='darkred', linestyle='--', linewidth=2, label='99% VaR')
@@ -44,7 +44,7 @@ def plot_risk(losses, terminal_values, portfolio_value, risk_metrics,
     axes[0, 0].legend()
     axes[0, 0].grid(True, alpha=0.3)
 
-    # Terminal values
+    
     axes[0, 1].hist(terminal_values, bins=60, density=True, alpha=0.7, color='darkgreen')
     axes[0, 1].axvline(x=np.percentile(terminal_values, 5), color='red', linestyle='--', linewidth=2)
     axes[0, 1].axvline(x=portfolio_value, color='blue', linestyle=':', linewidth=2, label='Initial')
@@ -54,7 +54,7 @@ def plot_risk(losses, terminal_values, portfolio_value, risk_metrics,
     axes[0, 1].legend()
     axes[0, 1].grid(True, alpha=0.3)
 
-    # Cumulative
+   
     sorted_losses = np.sort(losses)
     cum_prob = np.arange(1, len(sorted_losses) + 1) / len(sorted_losses)
     axes[1, 0].plot(sorted_losses, cum_prob, linewidth=2, color='steelblue')
@@ -65,7 +65,7 @@ def plot_risk(losses, terminal_values, portfolio_value, risk_metrics,
     axes[1, 0].set_title('Cumulative Loss Distribution')
     axes[1, 0].grid(True, alpha=0.3)
 
-    # VaR sensitivity
+    
     horizons = [1, 5, 10, 21]
     var_list = []
     for h in horizons:
