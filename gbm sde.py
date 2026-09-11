@@ -43,7 +43,7 @@ def plot_gbm(paths, time_grid, S0, T, save_path='results/gbm_paths.png'):
 
     n_paths = paths.shape[1]
 
-    # Multiple paths
+   
     for i in range(min(50, n_paths)):
         axes[0, 0].plot(time_grid, paths[:, i], linewidth=0.8, alpha=0.6)
     axes[0, 0].axhline(y=S0, color='red', linestyle='--', linewidth=2)
@@ -52,7 +52,7 @@ def plot_gbm(paths, time_grid, S0, T, save_path='results/gbm_paths.png'):
     axes[0, 0].set_title(f'GBM Simulation ({n_paths} paths)')
     axes[0, 0].grid(True, alpha=0.3)
 
-    # Mean and CI
+    
     mean_path = np.mean(paths, axis=1)
     std_path = np.std(paths, axis=1)
     axes[0, 1].plot(time_grid, mean_path, 'b-', linewidth=2.5, label='Mean')
@@ -63,7 +63,7 @@ def plot_gbm(paths, time_grid, S0, T, save_path='results/gbm_paths.png'):
     axes[0, 1].legend()
     axes[0, 1].grid(True, alpha=0.3)
 
-    # Terminal distribution
+   
     terminal = paths[-1, :]
     axes[1, 0].hist(terminal, bins=50, density=True, alpha=0.7, color='steelblue')
     axes[1, 0].set_xlabel('Terminal Price ($)')
@@ -71,7 +71,7 @@ def plot_gbm(paths, time_grid, S0, T, save_path='results/gbm_paths.png'):
     axes[1, 0].set_title(f'Terminal Distribution (T={T})')
     axes[1, 0].grid(True, alpha=0.3)
 
-    # Quantiles
+    
     for q, c in zip([0.1, 0.5, 0.9], ['purple', 'green', 'red']):
         axes[1, 1].plot(time_grid, np.quantile(paths, q, axis=1), linewidth=2, label=f'{int(q*100)}th %ile')
     axes[1, 1].set_xlabel('Time (years)')
