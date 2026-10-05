@@ -1,0 +1,27 @@
+
+prices = df['Close'].values
+returns = np.log(prices[1:] / prices[:-1])
+
+# 80% estimation period, 20% testing period
+split = int(len(returns) * 0.80)
+
+train_returns = returns[:split]
+test_returns = returns[split:]
+
+# Historical 95% VaR
+backtest_var_95 = np.percentile(train_returns, 5)
+
+# Count VaR breaches
+breaches = test_returns < backtest_var_95
+num_breaches = breaches.sum()
+
+expected_breaches = len(test_returns) * 0.05
+breach_rate = num_breaches / len(test_returns)
+
+print("\n--- VaR Backtesting ---")
+print(f"Training observations: {len(train_returns)}")
+print(f"Testing observations: {len(test_returns)}")
+print(f"Historical 95% VaR: {backtest_var_95:.4%}")
+print(f"Actual breaches: {num_breaches}")
+print(f"Expected breaches: {expected_breaches:.2f}")
+print(f"Actual breach rate: {breach_rate:.2%}")
