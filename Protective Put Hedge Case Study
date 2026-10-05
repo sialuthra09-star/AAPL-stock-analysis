@@ -1,0 +1,51 @@
+
+# Illustrative option parameters
+stock_price = 175
+strike_price = 180
+put_price = 10.2378
+
+# Hypothetical position
+shares = 100
+
+# Initial stock investment
+stock_investment = stock_price * shares
+
+# Cost of buying the put
+put_cost = put_price * shares
+
+print("\n--- Protective Put Hedge Case Study ---")
+print(f"Stock position: {shares} shares")
+print(f"Initial stock value: ${stock_investment:,.2f}")
+print(f"Put premium: ${put_cost:,.2f}")
+
+# Stock-price scenarios at option expiry
+scenario_prices = np.array([
+    140,
+    150,
+    160,
+    170,
+    175,
+    180,
+    190,
+    200
+])
+
+print("\n--- Hedge Comparison ---")
+
+for terminal_price in scenario_prices:
+
+    # Unhedged stock P&L
+    stock_pnl = (terminal_price - stock_price) * shares
+
+    # Put payoff
+    put_payoff = max(strike_price - terminal_price, 0) * shares
+
+    # Hedged P&L after paying the put premium
+    hedged_pnl = stock_pnl + put_payoff - put_cost
+
+    print(
+        f"Terminal Price: ${terminal_price:.2f} | "
+        f"Unhedged P&L: ${stock_pnl:,.2f} | "
+        f"Put Payoff: ${put_payoff:,.2f} | "
+        f"Hedged P&L: ${hedged_pnl:,.2f}"
+    )
