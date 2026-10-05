@@ -1,0 +1,23 @@
+
+n = len(test_returns)
+x = int(num_breaches)
+p = 0.05
+
+if x == 0 or x == n:
+    print("\nKupiec test cannot be calculated reliably with 0 or all observations as breaches.")
+else:
+    actual_rate = x / n
+
+    lr_uc = -2 * (
+        (n - x) * np.log((1 - p) / (1 - actual_rate))
+        + x * np.log(p / actual_rate)
+    )
+
+    kupiec_p_value = 1 - stats.chi2.cdf(lr_uc, df=1)
+
+    print("\n--- Kupiec VaR Backtest ---")
+    print(f"Observed breaches: {x}")
+    print(f"Expected breach probability: {p:.2%}")
+    print(f"Observed breach rate: {actual_rate:.2%}")
+    print(f"Kupiec LR statistic: {lr_uc:.4f}")
+    print(f"Kupiec p-value: {kupiec_p_value:.4f}")
