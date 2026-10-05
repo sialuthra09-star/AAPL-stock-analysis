@@ -1,0 +1,19 @@
+
+portfolio_value = 100000
+
+# Find the 5 worst historical daily returns
+worst_returns = np.sort(returns)[:5]
+
+print("\n--- Historical Stress Testing ---")
+print(f"Portfolio value: ${portfolio_value:,.2f}")
+
+for i, stress_return in enumerate(worst_returns, 1):
+    stressed_value = portfolio_value * np.exp(stress_return)
+    loss = portfolio_value - stressed_value
+
+    print(
+        f"Stress Scenario {i}: "
+        f"Return = {stress_return:.2%}, "
+        f"Loss = ${loss:,.2f}, "
+        f"Remaining Value = ${stressed_value:,.2f}"
+    )
